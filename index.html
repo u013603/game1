@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0F2B43">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="資料中心該住哪">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-192.png">
+<title>AI 資料中心，該住哪？</title>
+<style>
+:root{color-scheme:light;--d:#0A2A2F;--m:#12595E;--g:#1FA68E;--a:#F5B700;--l:#EEF5F3;--t:#5A6B6A}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
+html,body{margin:0;height:100%;background:#fff;font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;color:var(--d)}
+.app{max-width:1100px;margin:0 auto;padding:22px 28px;height:100%;display:flex;flex-direction:column;gap:14px}
+h1{margin:0;font-size:34px}h1 small{display:block;font-size:17px;color:var(--m);font-weight:400;margin-top:4px}
+.scene{background:var(--l);border-radius:18px;padding:10px 10px 0}
+svg{width:100%;height:auto;display:block}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{border:2px solid var(--m);background:#fff;color:var(--m);border-radius:30px;padding:12px 22px;font-size:20px;font-weight:700;font-family:inherit}
+.chip.on{background:var(--m);color:#fff}
+.sl{display:flex;align-items:center;gap:14px;font-size:18px;color:var(--t)}
+input[type=range]{flex:1;height:48px;accent-color:var(--m)}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.g{background:var(--l);border-radius:14px;padding:12px 16px}
+.g b{font-size:18px}.bar{height:16px;background:#fff;border-radius:8px;margin:8px 0 4px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:8px;background:var(--a);transition:width .25s,background .25s}
+.lv{font-size:22px;font-weight:800}
+.msg{background:var(--d);color:#fff;border-radius:14px;padding:14px 20px;font-size:22px;line-height:1.45;min-height:84px}
+.msg em{color:var(--a);font-style:normal;font-weight:800}
+.foot{font-size:13px;color:var(--t)}
+</style></head><body><div class="app">
+<h1>AI 資料中心，該住哪？<small>滑動下方滑桿或點選位置，看看「電」與「光」誰該跑長路</small></h1>
+<div class="scene"><svg viewBox="0 0 1000 250" id="svg">
+ <rect x="0" y="205" width="1000" height="45" fill="#D9E8E4"/>
+ <g transform="translate(40,105)"><rect width="110" height="100" rx="8" fill="#12595E"/><polygon points="55,18 35,58 52,58 44,88 76,44 58,44 68,18" fill="#F5B700"/></g>
+ <text x="95" y="232" text-anchor="middle" font-size="22" font-weight="700" fill="#0A2A2F">電廠／再生能源</text>
+ <g transform="translate(830,112)"><rect x="0" y="40" width="26" height="46" fill="#5A6B6A"/><rect x="30" y="14" width="30" height="72" fill="#12595E"/><rect x="64" y="52" width="22" height="34" fill="#5A6B6A"/><rect x="34" y="22" width="6" height="6" fill="#fff"/><rect x="46" y="22" width="6" height="6" fill="#fff"/><rect x="34" y="36" width="6" height="6" fill="#fff"/><rect x="46" y="36" width="6" height="6" fill="#fff"/></g>
+ <text x="873" y="232" text-anchor="middle" font-size="22" font-weight="700" fill="#0A2A2F">城市用戶</text>
+ <line id="cab" x1="150" y1="150" x2="500" y2="150" stroke="#F5B700" stroke-width="12" stroke-linecap="round"/>
+ <line id="fib" x1="500" y1="150" x2="830" y2="150" stroke="#1FA68E" stroke-width="12" stroke-linecap="round" stroke-dasharray="4 14"/>
+ <text id="cabT" y="128" font-size="20" font-weight="700" fill="#B26A00" text-anchor="middle">電力線</text>
+ <text id="fibT" y="128" font-size="20" font-weight="700" fill="#0B6B5E" text-anchor="middle">光纖</text>
+ <g transform="translate(450,112)"><rect x="0" y="40" width="26" height="46" fill="#5A6B6A"/><rect x="30" y="14" width="30" height="72" fill="#4591B9"/><rect x="64" y="52" width="22" height="34" fill="#5A6B6A"/><rect x="34" y="22" width="6" height="6" fill="#fff"/><rect x="46" y="22" width="6" height="6" fill="#fff"/><rect x="34" y="36" width="6" height="6" fill="#fff"/><rect x="46" y="36" width="6" height="6" fill="#fff"/></g>
+ <text x="493" y="232" text-anchor="middle" font-size="22" font-weight="700" fill="#0A2A2F">園區用戶</text>
+ <g id="dc"><rect x="-44" y="92" width="88" height="116" rx="10" fill="#0A2A2F"/><text x="0" y="135" text-anchor="middle" font-size="30" font-weight="800" fill="#F5B700">AI</text>
+ <rect x="-28" y="150" width="56" height="10" rx="3" fill="#1FA68E"/><rect x="-28" y="168" width="56" height="10" rx="3" fill="#1FA68E"/><rect x="-28" y="186" width="56" height="10" rx="3" fill="#1FA68E"/></g>
+</svg></div>
+<div class="chips"><button class="chip" data-v="0.05">市中心</button><button class="chip" data-v="0.5">園區旁</button><button class="chip" data-v="0.95">電廠／綠電旁</button></div>
+<div class="sl"><span>靠近城市</span><input id="r" type="range" min="0" max="100" value="10"><span>靠近電廠</span></div>
+<div class="row">
+ <div class="g"><b>輸電損耗與成本</b><div class="bar"><i id="b1"></i></div><span class="lv" id="l1"></span></div>
+ <div class="g"><b>都會區電網壓力</b><div class="bar"><i id="b2"></i></div><span class="lv" id="l2"></span></div>
+ <div class="g"><b>光纖拉得多長</b><div class="bar"><i id="b3" style="background:#1FA68E"></i></div><span class="lv" id="l3"></span></div>
+</div>
+<div class="msg" id="msg"></div>
+<div class="foot">示意互動，指標為相對高低，非實測數據。概念來源：台電董事長簡報《台灣電力未來十年布局》(2026.10.14)「以光代電」、Power Couple。</div>
+</div>
+<script>
+const $=id=>document.getElementById(id),X0=190,X1=790;let idle=0,auto=null;
+const lvl=v=>v>.66?"高":v>.33?"中":"低";
+function upd(t){ // t:0 靠近城市 → 1 靠近電廠
+ const x=X1-(X1-X0)*t; $("dc").setAttribute("transform","translate("+x+",0)");
+ $("cab").setAttribute("x2",x-44);$("fib").setAttribute("x1",x+44);
+ $("cabT").setAttribute("x",(150+x-44)/2);$("fibT").setAttribute("x",(x+44+830)/2);
+ $("cabT").style.opacity=x-44-150>90?1:0;$("fibT").style.opacity=830-x-44>90?1:0;
+ const loss=1-t, city=Math.max(0,1-t*1.15), fib=t;
+ [[1,loss],[2,city],[3,fib]].forEach(([i,v])=>{$("b"+i).style.width=(8+v*92)+"%";$("l"+i).textContent=lvl(v)});
+ $("b1").style.background=$("b2").style.background=loss>.66?"#E36A3D":loss>.33?"#F5B700":"#1FA68E";
+ $("msg").innerHTML=t<.33?"電要<em>長途跋涉</em>送進市區：線損高、成本高，壓力全落在都會區的電網上。":
+  t<.7?"放在園區旁：電力距離縮短，但還要看<em>周邊電網容量</em>夠不夠。":
+  "放在電源旁：<em>電線短、光纖長</em>——用資訊流取代電流，節能、加速、環保。這就是「Power Couple」。";
+ document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",Math.abs(c.dataset.v-t)<.2));
+ $("r").value=t*100}
+function go(t){clearInterval(auto);upd(t);idle=Date.now()}
+$("r").addEventListener("input",e=>go(e.target.value/100));
+document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>go(+c.dataset.v));
+// 展場待機：30 秒沒人操作就自動示範
+let dir=1,tt=.1;setInterval(()=>{if(Date.now()-idle>30000){tt+=dir*.01;if(tt>=1||tt<=0)dir*=-1;upd(Math.min(1,Math.max(0,tt)))}else tt=$("r").value/100},60);
+upd(.1);
+if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+</script></body></html>
